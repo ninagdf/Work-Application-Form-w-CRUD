@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display Records</title>
+    <link rel="stylesheet" href="crudstyle.css">
+    <script>
+        // Function to fetch records from crud.php and display them in the table
+        function fetchAndDisplayRecords() {
+            fetch('crud.php')
+                .then(response => response.json())
+                .then(data => {
+                    let tableBody = document.getElementById('recordsTableBody');
+                    tableBody.innerHTML = ''; // Clear existing table rows
+                    data.forEach(row => {
+                        let tr = document.createElement('tr');
+                        tr.setAttribute('data-id', row.id); // Set a data attribute for the row
+                        Object.keys(row).forEach(key => {
+                            let td = document.createElement('td');
+                            if (key !== 'id') { // Make all fields except 'id' editable
+                                let input = document.createElement('input');
+                                input.type = 'text';
+                                input.name = key;
+                                input.value = row[key];
+                                input.disabled = true; // Disable the input initially
+                                input.style.width = (20) + 'ch'; // Set the width
+                                input.style.fontSize = '16px'
+                                td.appendChild(input);
+                            } else {
+                                td.textContent = row[key]; // Display the 'id'
+                            }
+                            tr.appendChild(td);
+                        });
+                        let actionsTd = document.createElement('td');
+                        let editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.onclick = function() { enableEdit(row.id); };
+                        let saveButton = document.createElement('button');
+                        saveButton.textContent = 'Update';
+                        saveButton.onclick = function() { saveEdit(row.id); };
+                        saveButton.style.display = 'none'; // Hide the save button initially
+                        actionsTd.appendChild(editButton);
+                        actionsTd.appendChild(saveButton);
+                        tr.appendChild(actionsTd);
+                        tableBody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Function to enable editing for a row
+        function enableEdit(id) {
+            let row = document.querySelector(`tr[data-id="${id}"]`);
+            let inputs = row.querySelectorAll('input');
+            inputs.forEach(input => input.disabled = false); // Enable the inputs
+            row.querySelector('button').style.display = 'none'; // Hide the edit button
+            row.querySelectorAll('button')[1].style.display = ''; // Show the save button
+        }
+
+        // Function to save the edited row
+        function saveEdit(id) {
+            let row = document.querySelector(`tr[data-id="${id}"]`);
+            let inputs = row.querySelectorAll('input');
+            let data = { id: id };
+            inputs.forEach(input => {
+                data[input.name] = input.value;
+                input.disabled = true; // Disable the inputs again
+            });
+            fetch('update_record.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(data).toString()
+            })
+            .then(response => response.text())
+            .then(text => {
+                console.log(text);
+                row.querySelector('button').style.display = ''; // Show the edit button
+                row.querySelectorAll('button')[1].style.display = 'none'; // Hide the save button
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function on page load
+        window.onload = fetchAndDisplayRecords;
+    </script>
+</head>
+<body>
+    <h1>Registered Work Applicants</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Mobile No.</th>
+                <th>Birth Date</th>
+                <th>Religion</th>
+                <th>Race</th>
+                <th>PWD?</th>
+                <th>Veteran?</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Addtl. Notes</th>
+                <th>Zip Code</th>
+                <th>Region</th>
+                <th>Province</th>
+                <th>Municipality</th>
+                <th>Barangay</th>
+                <th>House Details</th>
+                <th>Father</th>
+                <th>Mother</th>
+                <th>Emergency No.</th>
+                <th>Applying Position</th>
+                <th>Resume</th>
+                <th>Employment</th>
+                <th>Date Created</th>
+                <th>Select</th> <!-- Add a header for the actions -->
+            </tr>
+        </thead>
+        <tbody id="recordsTableBody">
+            <!-- Records will be displayed here -->
+        </tbody>
+    </table>
+    
+
+<!-- Create New Application button -->
+<div class="buttons">
+    <button class="actionBtn" onclick="window.location.href='main.html';">Create New Application</button>
+    <button class="backBtn" onclick="window.location.href='index.html';">Back to Login</button>
+</div>
+        
+</body>
+</html>
+
+
+

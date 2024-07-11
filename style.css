@@ -1,0 +1,451 @@
+/* Google import font Poppins*/
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, #c9eff1, #4070f4);
+    overflow: hidden;
+}
+
+.container{
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.container header{
+    font-size: 24px; /* Increased font size */
+    font-weight: 600;
+    color: #333;
+}
+
+.container header::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: #4070f4;
+}
+
+.container form{
+    position: relative;
+    min-height: 490px;
+    margin-top: 16px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.container form .form{
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+.container form .form.second{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+}
+
+form.secActive .form.first{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+form.secActive .form.second{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.container form .title{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 18px; /* Increased font size */
+    font-weight: 600;
+    margin: 6px 0;
+    color: #333;
+}
+
+.container form .fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form .fields .input-field{
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-field label{
+    font-size: 14px; /* Increased font size */
+    font-weight: 600; 
+    color: #2e2e2e;
+}
+
+.input-field input{
+    outline: none;
+    font-size: 16px; /* Increased font size */
+    font-weight: 480;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+
+.input-field input:is(:focus, :valid){
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+.input-field input[type="date"]{
+    color: #707070;
+}
+.input-field input[type="date"]:valid{
+    color: #333;
+}
+#field2 {
+    position: relative; /* Add relative positioning to contain the textarea */
+}
+#field2 textarea {
+    resize: none; /* Disable resizing since we'll handle it with JavaScript */
+    width: 100%;
+    min-height: 42px; /* Set min-height to maintain the initial height */
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 8px 15px;
+    font-size: 16px; /* Increased font size */
+    font-weight: 480;
+    color: #333;
+    outline: none;
+    box-sizing: border-box;
+    overflow-y: hidden; /* Hide vertical scrollbar */
+}
+
+.container form button , .backBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: #4373f4;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.container form button,
+.container form .backBtn{
+    font-size: 16px; /* Increased font size */
+    font-weight: 400;
+}
+
+form button:hover,
+.backBtn:hover{
+    background-color: #1343c9;
+}
+
+form button i,
+form .backBtn i{
+    margin: 0 6px;
+}
+form .backBtn i{
+    transform: rotate(180deg);
+}
+
+form .buttons{
+    display: flex;
+    align-items: center; 
+}
+
+form .buttons button , .backBtn{
+    margin-right: 14px; 
+}
+
+@media (max-width: 750px){
+    .container form{
+        overflow-y: scroll;
+    }
+    .container form::-webkit-scrollbar{
+        display: none;
+    }
+    form .fields .input-field{
+        width: calc(100% / 2 - 15px);
+    }
+}
+
+@media (max-width: 550px){
+    form .fields .input-field{
+        width: 100%;
+    }
+}
+
+.radio-container {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 15px; 
+}
+
+.radio-container input[type="radio"] {
+    display: none; /* Hide the actual radio buttons */
+}
+
+.radio-container label {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Style for the radio buttons */
+.radio-container label::before {
+    content: '';
+    display: inline-block;
+    width: 18px; /* Adjusted width to make the circle smaller */
+    height: 18px; /* Adjusted height to make the circle smaller */
+    border: 1px solid #ccc;
+    border-radius: 50%; /* Make it a circle */
+    margin-right: 5px;
+}
+
+/* Style for the radio buttons when selected */
+.radio-container input[type="radio"]:checked + label::before {
+    background-color: #ccc; /* Change background color when selected */
+}
+
+.select-box {
+    position: relative;
+    width: 100%; /* Adjusted to match the width of the container */
+    max-width: 270px; /* Matched with the max-width of the .container */
+    margin: 0; /* Center the element */
+    border-radius: 1px;
+    background-color: #fff;
+}
+
+.select-box input {
+    width: calc(100% - 12px); /* Adjusted to match the input width with padding */
+    padding: 8px; /* Matched with the padding of the input fields */
+    font-size: 16px; /* Increased font size */
+    border-radius: 5px; /* Matched with the border radius of the input fields */
+    border: 1px solid #aaa; /* Matched with the border of the input fields */
+    outline: none;
+}
+
+.selected-option {
+    background-color: #f1f1f1;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Adjusted to match the width of the select box */
+    padding: 1px; /* Matched with the padding of the input fields */
+}
+
+.selected-option div {
+    position: relative;
+    padding: 0 16px 0 8px; /* Adjusted to match the padding of the input fields */
+    text-align: center;
+    cursor: pointer;
+    flex: 1; /* Adjusted to evenly distribute space */
+}
+
+.selected-option div::after {
+    position: absolute;
+    content: "";
+    right: 8px; /* Adjusted to match the padding of the input fields */
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 8px; /* Adjusted to match the size of the arrow */
+    height: 8px; /* Adjusted to match the size of the arrow */
+    border-right: 1px solid var(--primary); /* Matched with the border color of the arrows */
+    border-bottom: 1px solid var(--primary); /* Matched with the border color of the arrows */
+    transition: .2s;
+}
+
+.selected-option div.active::after {
+    transform: translateY(-50%) rotate(225deg);
+}
+
+.select-box .options {
+    position: absolute;
+    top: 100%; /* Adjusted to position below the selected option */
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    border-radius: .5rem;
+    display: none;
+}
+
+.select-box .options.active {
+    display: block;
+}
+
+.select-box .options::before {
+    position: absolute;
+    content: "";
+    left: 8px; /* Adjusted to match the padding of the input fields */
+    top: -12px; /* Adjusted to match the padding of the input fields */
+    width: 0;
+    height: 0;
+    border: 6px solid transparent; /* Adjusted to match the padding of the input fields */
+    border-bottom-color: var(--primary); /* Matched with the border color */
+}
+
+input.search-box {
+    width: calc(100% - 16px); /* Adjusted to match the input width with padding */
+    padding: 16px; /* Matched with the padding of the input fields */
+    background-color: var(--primary);
+    color: #fff;
+    border-radius: 0 0 5px 5px; /* Matched with the border radius of the input fields */
+    border: none; /* Removed border */
+    outline: none;
+    color: #000;
+}
+
+.select-box ol {
+    list-style: none;
+    max-height: 200px; /* Adjusted max-height */
+    overflow: auto; /* Changed to auto for scroll when needed */
+    margin: 0; /* Removed margin */
+    padding: 0; /* Removed padding */
+}
+
+.select-box ol li {
+    padding: 8px; /* Adjusted to match the padding of the input fields */
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    color: #000;
+}
+
+.select-box ol li.hide {
+    display: none;
+}
+
+.select-box ol li:not(:last-child) {
+    border-bottom: 1px solid #fff; /* Matched with the border color */
+}
+
+.select-box ol li:hover {
+    background-color: lightcyan;
+}
+
+.select-box ol li .country-name {
+    margin-left: 4px; /* Adjusted to match the margin of the input fields */
+}
+
+.input-field input[type="file"] {
+    padding: 10px 15px; /* Increase padding for better clickability */
+}
+
+.input-field select {
+    outline: none;
+    font-size: 16px; /* Increased font size */
+    font-weight: 480;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px; /* Adjust the height to match the input field */
+    margin: 8px 0;
+    width: calc(100%); /* Adjust the width to match the input field */
+}
+
+.input-field select:is(:focus, :valid) {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+
+@media (max-width: 750px) {
+    .select-box form {
+        overflow-y: scroll;
+    }
+    .select-box form::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.box-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.box-area li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 0;
+    height: 0;
+    border-bottom: 160px solid rgba(255, 255, 255, 0.2);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+}
+.box-area li:nth-child(1) {
+    left: 86%;
+    animation-delay: 0s;
+}
+.box-area li:nth-child(2) {
+    left: 12%;
+    animation-delay: 1.5s;
+    animation-duration: 10s;
+}
+.box-area li:nth-child(3) {
+    left: 70%;
+    animation-delay: 5.5s;
+}
+.box-area li:nth-child(4) {
+    left: 42%;
+    animation-delay: 0s;
+    animation-duration: 15s;
+}
+.box-area li:nth-child(5) {
+    left: 65%;
+    animation-delay: 0s;
+}
+.box-area li:nth-child(6) {
+    left: 23%;
+    animation-delay: 3.5s;
+}
+@keyframes animate {
+    0% {
+        transform: translateY(0) scale(0);
+    }
+    100% {
+        transform: translateY(-800px) scale(2);
+        opacity: 0;
+    }
+}

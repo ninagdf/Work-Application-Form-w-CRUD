@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Record</title>
+    <link rel="stylesheet" href="style.css"> <!-- Your CSS file -->
+</head>
+<body>
+    <h1>Edit Record</h1>
+    <form id="editForm" method="post" action="update_record.php">
+        <!-- The form fields will be populated with JavaScript -->
+    </form>
+    <script>
+        // Function to fetch the record data and populate the form
+        function fetchAndPopulateForm(id) {
+            fetch(`select_record.php?id=${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    let form = document.getElementById('editForm');
+                    // Populate the form fields with the data
+                    // Example for the first name field:
+                    let firstNameInput = document.createElement('input');
+                    firstNameInput.type = 'text';
+                    firstNameInput.name = 'first_name';
+                    firstNameInput.value = data.first_name;
+                    form.appendChild(firstNameInput);
+                    // Repeat for other fields...
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Call the function with the ID of the record you want to edit
+        fetchAndPopulateForm(1); // Replace 1 with the actual ID
+    </script>
+</body>
+</html>
